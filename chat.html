@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MindBridge</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>MindBridge</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="menu-item active" data-view="dashboard">Dashboard</li>
+      <li class="menu-item" data-view="chat">Chat</li>
+      <li class="menu-item" data-view="daily-log">Daily Log</li>
+      <li class="menu-item" data-view="todo-list">To-Do List</li>
+      <li class="menu-item" data-view="tracker">Time Tracker</li>
+    </ul>
+  </div>
+  <div id="main-content">
+    <div id="dashboard-view" class="view active">
+      <div class="dashboard-welcome">
+        <h1>Welcome to MindBridge</h1>
+        <p>Your personal space for wellness and productivity.</p>
+      </div>
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <h3>Get Started</h3>
+          <p>Navigate using the sidebar. Chat with your AI coach, keep a daily log, or manage your tasks.</p>
+        </div>
+        <div class="dashboard-card">
+          <h3>Today's Focus</h3>
+          <p>Set an intention for your day. What do you want to achieve?</p>
+        </div>
+      </div>
+    </div>
+    <div id="chat-view" class="view">
+      <div id="chat-welcome" class="chat-welcome-message">
+        <h2>Your Private Wellness Coach</h2>
+        <p>Start a conversation by typing below.</p>
+      </div>
+      <div id="messages"></div>
+      <div id="input-container">
+        <input type="text" id="input" placeholder="Type your message...">
+        <button id="send">Send</button>
+      </div>
+    </div>
+    <div id="daily-log-view" class="view">
+      <h2>Daily Log</h2>
+      <textarea id="daily-log-textarea" placeholder="How are you feeling today?"></textarea>
+      <button id="save-log">Save</button>
+    </div>
+    <div id="todo-list-view" class="view">
+      <h2>To-Do List</h2>
+      <div id="todo-input-container">
+        <input type="text" id="todo-input" placeholder="Add a new task...">
+        <button id="add-todo">Add</button>
+      </div>
+      <ul id="todo-list"></ul>
+    </div>
+    <div id="tracker-view" class="view">
+        <h2>Time Tracker</h2>
+        <div class="tracker-container">
+            <div id="timer-display">00:00:00</div>
+            <button id="start-stop-tracker">Start Tracking</button>
+            <p class="tracker-info">Start the timer to get periodic wellness reminders.</p>
+        </div>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

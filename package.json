@@ -1,0 +1,39 @@
+{
+  "name": "mindbridge",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "say": "^0.16.0"
+  },
+  "devDependencies": {
+    "electron": "^37.2.5",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.mindbridge.app",
+    "productName": "MindBridge",
+    "files": [
+      "electron.js",
+      "renderer.js",
+      "chat.html",
+      "styles.css",
+      "package.json",
+      "node_modules/"
+    ],
+    "linux": {
+      "target": "AppImage"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  }
+}

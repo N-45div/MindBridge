@@ -1,0 +1,249 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  background-color: #fffaf0;
+}
+
+#sidebar {
+  width: 250px;
+  background-color: #ffcc80;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  background-color: #ffb74d;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #ffb74d;
+}
+
+.menu-item.active {
+  background-color: #ffa726;
+}
+
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.view {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}
+
+.view.active {
+  display: flex;
+}
+
+.dashboard-welcome {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.dashboard-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#chat-view {
+  padding: 0;
+  position: relative;
+}
+
+.chat-welcome-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #aaa;
+}
+
+#messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 70%;
+}
+
+.user {
+  background-color: #ffe0b2;
+  color: #333;
+  align-self: flex-end;
+}
+
+.assistant {
+  background-color: #fff;
+  border: 1px solid #eee;
+  align-self: flex-start;
+}
+
+#input-container {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+#input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#send {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ffcc80;
+  color: #333;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+#send:hover {
+  background-color: #ffb74d;
+}
+
+#daily-log-textarea {
+  width: 100%;
+  height: 300px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  resize: none;
+}
+
+#save-log {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ffcc80;
+  color: #333;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+#save-log:hover {
+  background-color: #ffb74d;
+}
+
+#todo-input-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#add-todo {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ffcc80;
+  color: #333;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+#add-todo:hover {
+  background-color: #ffb74d;
+}
+
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.tracker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#timer-display {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+#start-stop-tracker {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ffcc80;
+    color: #333;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+#start-stop-tracker:hover {
+    background-color: #ffb74d;
+}
