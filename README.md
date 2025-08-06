@@ -41,8 +41,8 @@
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/mindbridge-app.git
-    cd mindbridge-app
+    git clone https://github.com/N-45div/MindBridge.git
+    cd MindBridge
     ```
 2.  **Install dependencies:**
     ```bash
@@ -62,11 +62,6 @@
 5.  **To-Do List:** Add and manage your tasks in the To-Do List. Your tasks are saved automatically.
 6.  **Time Tracker:** Start the tracker to focus on your work. You'll receive AI-generated voice and text reminders every 2 minutes (for demo purposes) to take a break or drink water.
 
-## 📸 Screenshots
-*(Placeholder for screenshots of the desktop app)*
-
-## 🤝 Contributing
-Contributions are welcome! Please feel free to submit issues or pull requests.
 
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
