@@ -5,29 +5,6 @@ const fs = require('fs');
 const say = require('say');
 
 const logsPath = path.join(app.getPath('userData'), 'daily-logs.json');
-const todosPath = path.join(app.getPath('userData'), 'todos.json');
-
-let reminderInterval;
-let nextReminder = '';
-
-async function fetchNextReminder() {
-  try {
-    const response = await fetch('http://localhost:11434/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'gemma3n:e2b-it-q4_K_M',
-        prompt: 'Generate a short, friendly, and encouraging wellness reminder. For example: "Time for a quick stretch!" or "Don\'t forget to drink some water!"',
-        stream: false,
-      }),
-    });
-    const data = await response.json();
-    nextReminder = data.response;
-  } catch (error) {
-    console.error('Error fetching reminder:', error);
-    nextReminder = 'It seems I had a problem thinking of a reminder, but this is your reminder to take a break!';
-  }
-}
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -46,12 +23,13 @@ app.whenReady().then(createWindow);
 
 ipcMain.on('send-message', async (event, message) => {
   try {
+    const wellnessCoachPrompt = `You are MindBridge, a compassionate and encouraging wellness coach. Your goal is to provide supportive, positive, and helpful advice related to mental well-being, productivity, and healthy habits. Always respond in a friendly and empathetic tone. User: ${message}`;
     const response = await fetch('http://localhost:11434/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'gemma3n:e2b-it-q4_K_M',
-        prompt: message,
+        prompt: wellnessCoachPrompt,
         stream: false,
       }),
     });
@@ -64,35 +42,43 @@ ipcMain.on('send-message', async (event, message) => {
   }
 });
 
-ipcMain.on('save-log', (event, log) => {
+ipcMain.on('save-log', async (event, log) => {
   let logs = [];
   if (fs.existsSync(logsPath)) {
     logs = JSON.parse(fs.readFileSync(logsPath));
   }
   logs.push({ date: new Date().toISOString(), log });
   fs.writeFileSync(logsPath, JSON.stringify(logs, null, 2));
+
+  // AI Analysis of the log
+  try {
+    const analysisPrompt = `Analyze the following daily log entry and provide a concise, encouraging, and personalized insight or summary. Focus on themes, emotional tone, or recurring patterns. Keep it to 2-3 sentences. Log: "${log}"`;
+    const response = await fetch('http://localhost:11434/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'gemma3n:e2b-it-q4_K_M',
+        prompt: analysisPrompt,
+        stream: false,
+      }),
+    });
+    const data = await response.json();
+    const insight = data.response;
+    event.reply('receive-ai-insight', insight);
+  } catch (error) {
+    console.error('Error analyzing log with Ollama:', error);
+    event.reply('receive-ai-insight', 'Could not generate AI insight for this log.');
+  }
+  event.reply('log-saved'); // Optional: send confirmation back
 });
 
-ipcMain.on('save-todos', (event, todos) => {
-  fs.writeFileSync(todosPath, JSON.stringify(todos, null, 2));
-});
-
-ipcMain.on('load-todos', (event) => {
-  if (fs.existsSync(todosPath)) {
-    const todos = JSON.parse(fs.readFileSync(todosPath));
-    event.reply('receive-todos', todos);
+ipcMain.on('load-logs', (event) => {
+  if (fs.existsSync(logsPath)) {
+    const logs = JSON.parse(fs.readFileSync(logsPath));
+    event.reply('receive-logs', logs);
+  } else {
+    event.reply('receive-logs', []);
   }
 });
 
-ipcMain.on('start-tracker', () => {
-  fetchNextReminder(); // Pre-fetch the first reminder
-  reminderInterval = setInterval(() => {
-    new Notification({ title: 'MindBridge Reminder', body: nextReminder }).show();
-    say.speak(nextReminder);
-    fetchNextReminder(); // Fetch the next reminder
-  }, 120000); // 2 minutes for demo purposes
-});
 
-ipcMain.on('stop-tracker', () => {
-  clearInterval(reminderInterval);
-});

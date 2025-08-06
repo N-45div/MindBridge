@@ -13,8 +13,9 @@
       <li class="menu-item active" data-view="dashboard">Dashboard</li>
       <li class="menu-item" data-view="chat">Chat</li>
       <li class="menu-item" data-view="daily-log">Daily Log</li>
-      <li class="menu-item" data-view="todo-list">To-Do List</li>
-      <li class="menu-item" data-view="tracker">Time Tracker</li>
+      
+      
+      
     </ul>
   </div>
   <div id="main-content">
@@ -49,23 +50,14 @@
       <h2>Daily Log</h2>
       <textarea id="daily-log-textarea" placeholder="How are you feeling today?"></textarea>
       <button id="save-log">Save</button>
+      <h3>Past Logs</h3>
+      <div id="past-logs"></div>
+      <h3>AI Insights</h3>
+      <div id="ai-insight-section"></div>
     </div>
-    <div id="todo-list-view" class="view">
-      <h2>To-Do List</h2>
-      <div id="todo-input-container">
-        <input type="text" id="todo-input" placeholder="Add a new task...">
-        <button id="add-todo">Add</button>
-      </div>
-      <ul id="todo-list"></ul>
-    </div>
-    <div id="tracker-view" class="view">
-        <h2>Time Tracker</h2>
-        <div class="tracker-container">
-            <div id="timer-display">00:00:00</div>
-            <button id="start-stop-tracker">Start Tracking</button>
-            <p class="tracker-info">Start the timer to get periodic wellness reminders.</p>
-        </div>
-    </div>
+    
+    
+    
   </div>
   <script src="renderer.js"></script>
 </body>

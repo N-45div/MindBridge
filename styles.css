@@ -46,6 +46,53 @@ body {
   flex-direction: column;
 }
 
+#past-logs {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #fff;
+  max-height: 300px; /* Limit height and add scroll */
+  overflow-y: auto;
+}
+
+.log-entry {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #eee;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-date {
+  font-size: 0.9em;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.log-content {
+  font-size: 1em;
+  line-height: 1.5;
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
+#ai-insight-section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #b2dfdb; /* A calming blue-green border */
+  border-radius: 10px;
+  background-color: #e0f2f1; /* Light blue-green background */
+  color: #004d40;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+
+
+
+
 .view {
   display: none;
   flex-direction: column;
@@ -95,23 +142,34 @@ body {
   padding: 20px;
 }
 
-.message {
+.message-container {
+  display: flex;
   margin-bottom: 15px;
+}
+
+.message {
   padding: 10px 15px;
   border-radius: 18px;
   max-width: 70%;
+  position: relative;
 }
 
-.user {
+.user-message-container {
+  justify-content: flex-end;
+}
+
+.user .message {
   background-color: #ffe0b2;
   color: #333;
-  align-self: flex-end;
 }
 
-.assistant {
+.assistant-message-container {
+  justify-content: flex-start;
+}
+
+.assistant .message {
   background-color: #fff;
   border: 1px solid #eee;
-  align-self: flex-start;
 }
 
 #input-container {
@@ -170,80 +228,5 @@ body {
   background-color: #ffb74d;
 }
 
-#todo-input-container {
-  display: flex;
-  margin-bottom: 20px;
-}
 
-#todo-input {
-  flex: 1;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 16px;
-}
 
-#add-todo {
-  margin-left: 10px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #ffcc80;
-  color: #333;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.2s;
-}
-
-#add-todo:hover {
-  background-color: #ffb74d;
-}
-
-#todo-list {
-  list-style: none;
-  padding: 0;
-}
-
-.todo-item {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-.todo-item input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.todo-item.completed {
-  text-decoration: line-through;
-  color: #aaa;
-}
-
-.tracker-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-
-#timer-display {
-    font-size: 48px;
-    font-weight: bold;
-}
-
-#start-stop-tracker {
-    padding: 10px 20px;
-    border: none;
-    background-color: #ffcc80;
-    color: #333;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.2s;
-}
-
-#start-stop-tracker:hover {
-    background-color: #ffb74d;
-}
